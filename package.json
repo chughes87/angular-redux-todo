@@ -1,19 +1,25 @@
 {
-  "name": "simple-react-full-stack",
+  "name": "trulia-challenge",
   "version": "1.0.0",
-  "description": "Boilerplate to build a full stack web application using React, Node.js, Express and Webpack.",
+  "description": "A fullstack js app that helps landlords price their rentals",
   "main": "src/server/index.js",
   "scripts": {
     "start": "node src/server/index.js",
     "build": "webpack --mode production",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
+    "test": "nodemon --ext js --exec 'jasmine \"src/**/*.spec.js\"'"
   },
   "author": "Sandeep Raveesh",
   "license": "ISC",
   "dependencies": {
+    "csvtojson": "^2.0.4",
+    "d3": "^5.5.0",
     "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "prop-types": "^15.6.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },
@@ -29,9 +35,11 @@
     "eslint": "^5.0.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "jasmine": "^3.1.0",
     "nodemon": "^1.17.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.5.0",
