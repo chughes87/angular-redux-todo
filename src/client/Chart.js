@@ -26,7 +26,6 @@ export default class Chart extends Component {
 
     render() {
         const { colors, data } = this.state;
-        const { bedrooms } = this.props;
         return (
             <div>
                 {data ? (
