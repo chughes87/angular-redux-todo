@@ -1,19 +1,34 @@
+const d3 = require('d3');
+
 Object.assign(exports, {
-    nestRentalData
+    getBedroomData,
+    estimateRentalValue,
 });
 
-function nestRentalData(data) {
-    return data.reduce((nestedData, datum) => {
-        if (!nestedData[datum.bedrooms]) {
-            nestedData[datum.bedrooms] = {
-                [datum.bathrooms]: [datum.price],
-            };
-        } else if (!nestedData[datum.bedrooms][datum.bathrooms]) {
-            nestedData[datum.bedrooms][datum.bathrooms] = [datum.price];
-        } else {
-            nestedData[datum.bedrooms][datum.bathrooms].push(datum.price);
-        }
+function getBedroomData(data, bedrooms) {
+    return d3.nest().key(d => d.bedrooms)
+        .entries(data)
+        .find(d => d.bedrooms === bedrooms).values;
+}
 
-        return nestedData;
-    }, {});
+function estimateRentalValue(data, bedrooms, bathrooms, squareFoot) {
+    const nestedData = d3.nest().key(d => d.bedrooms)
+        .key(d => d.bathrooms)
+        .entries(data);
+
+        // TODO: figure out how to key by integers?
+    const relevantData = nestedData.find(d => bedrooms === +d.key).values
+        .find(d => bathrooms === +d.key).values
+        .filter(d => d.squareFoot <= (squareFoot + 500)
+                  && d.squareFoot > (squareFoot - 500));
+
+    if (relevantData) {
+        return {
+            medianPrice: d3.median(relevantData.map(d => d.price)),
+            n: relevantData.length,
+        };
+    }
+
+    // TODO: trigger error here
+    return null;
 }

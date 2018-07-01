@@ -13,7 +13,8 @@
     "no-param-reassign": [0],
     "no-use-before-define": "off",
     "react/jsx-indent": "off",
-    "react/jsx-indent-props": "off"
+    "react/jsx-indent-props": "off",
+    "object-curly-newline": "off"
   },
   "plugins": [
     "jasmine"
