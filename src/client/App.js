@@ -44,13 +44,38 @@ export default class App extends Component {
     render() {
         const { bedrooms, bathrooms, squareFoot, estimate, n } = this.state;
         return (
-            <div>
-                <input type="number" name="Bedrooms" value={bedrooms} onChange={this.updateBedrooms} />
-                <input type="text" name="Bathrooms" value={bathrooms} onChange={this.updateBathrooms} />
-                <input type="text" name="Square Feet" value={squareFoot} onChange={this.updateSquareFoot} />
-                <button type="button" onClick={this.handleSubmit}>
-                    Check
-                </button>
+            <div className="form-horizontal">
+                <div className="control-group">
+                    <label className="control-label" htmlFor="bedrooms">
+                        Bedrooms:&nbsp;
+                    </label>
+                    <div className="controls">
+                        <input id="bedrooms" type="number" name="Bedrooms" value={bedrooms} onChange={this.updateBedrooms} />
+                    </div>
+                </div>
+                <div className="control-group">
+                    <label className="control-label" htmlFor="bathrooms">
+                        Bathrooms:&nbsp;
+                    </label>
+                    <div className="controls">
+                        <input id="bathrooms" type="number" name="Bathrooms" value={bathrooms} onChange={this.updateBathrooms} />
+                    </div>
+                </div>
+                <div className="control-group">
+                    <label className="control-label" htmlFor="square-feet">
+                        Square Feet:&nbsp;
+                    </label>
+                    <div className="controls">
+                        <input id="square-feet" type="number" name="Square Feet" value={squareFoot} onChange={this.updateSquareFoot} />
+                    </div>
+                </div>
+                <div className="control-group">
+                    <div className="controls">
+                        <button type="button" className="btn" onClick={this.handleSubmit}>
+                            Check
+                        </button>
+                    </div>
+                </div>
                 {estimate ? (
                     <div>
                         Your estimated rental value is $
