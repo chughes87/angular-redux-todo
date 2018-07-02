@@ -5,14 +5,13 @@ export default class RentalForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { bedrooms: 1, bathrooms: 1, squareFoot: 500, estimate: 3333, n: 33 };
+        //  bedrooms: 1, bathrooms: 1, squareFoot: 500, estimate: 3333, n: 33
+        this.state = { };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateBedrooms = this.updateBedrooms.bind(this);
         this.updateBathrooms = this.updateBathrooms.bind(this);
         this.updateSquareFoot = this.updateSquareFoot.bind(this);
-
-        this.handleSubmit();
     }
 
     handleSubmit() {
