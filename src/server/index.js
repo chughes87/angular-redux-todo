@@ -30,7 +30,7 @@ app.get('/api/rentalData', async (req, res) => {
 app.get('/api/rentalEstimate', async (req, res) => {
     const data = await getData();
     const { bedrooms, bathrooms, squareFoot } = req.query;
-    const estimate = rentalDataUtils.estimateRentalValue(data, bedrooms, bathrooms, squareFoot);
+    const estimate = rentalDataUtils.estimateRentalValue(data, +bedrooms, +bathrooms, +squareFoot);
     res.send(estimate);
 });
 

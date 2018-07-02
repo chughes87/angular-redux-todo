@@ -17,10 +17,10 @@ function estimateRentalValue(data, bedrooms, bathrooms, squareFoot) {
         .entries(data);
 
         // TODO: figure out how to key by integers?
-    const relevantData = nestedData.find(d => bedrooms === d.key).values
-        .find(d => bathrooms === d.key).values
-        .filter(d => d.squareFoot <= (squareFoot + 500)
-                  && d.squareFoot > (squareFoot - 500));
+    const relevantData = nestedData.find(d => bedrooms === +d.key).values
+        .find(d => bathrooms === +d.key).values
+        .filter(d => d.squareFoot <= (squareFoot + 100)
+                  && d.squareFoot > (squareFoot - 100));
 
     if (relevantData) {
         return {
