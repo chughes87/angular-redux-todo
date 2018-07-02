@@ -8,7 +8,7 @@ Object.assign(exports, {
 function getBedroomData(data, bedrooms) {
     return d3.nest().key(d => d.bedrooms)
         .entries(data)
-        .find(d => d.bedrooms === bedrooms).values;
+        .find(d => d.key === bedrooms).values;
 }
 
 function estimateRentalValue(data, bedrooms, bathrooms, squareFoot) {
@@ -17,8 +17,8 @@ function estimateRentalValue(data, bedrooms, bathrooms, squareFoot) {
         .entries(data);
 
         // TODO: figure out how to key by integers?
-    const relevantData = nestedData.find(d => bedrooms === +d.key).values
-        .find(d => bathrooms === +d.key).values
+    const relevantData = nestedData.find(d => bedrooms === d.key).values
+        .find(d => bathrooms === d.key).values
         .filter(d => d.squareFoot <= (squareFoot + 500)
                   && d.squareFoot > (squareFoot - 500));
 

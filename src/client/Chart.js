@@ -7,7 +7,6 @@ export default class Chart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
             colors: [
                 'black',
                 'blue',
@@ -17,15 +16,9 @@ export default class Chart extends Component {
         };
     }
 
-    componentDidMount() {
-        const { bedrooms } = this.props;
-        fetch(`/api/rentalData?bedrooms=${bedrooms}`)
-            .then(res => res.json())
-            .then(data => this.setState({ data }));
-    }
-
     render() {
-        const { colors, data } = this.state;
+        const { colors } = this.state;
+        const { data } = this.props;
         return (
             <div>
                 {data ? (
@@ -54,5 +47,5 @@ export default class Chart extends Component {
 
 
 Chart.propTypes = {
-    bedrooms: PropTypes.number
+    data: PropTypes.array.isRequired,
 };

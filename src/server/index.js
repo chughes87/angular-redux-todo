@@ -16,23 +16,22 @@ const csvOptions = {
     headers: ['price', 'bedrooms', 'bathrooms', 'squareFoot'],
 };
 
-const fileReadPromise = csv(csvOptions).fromFile(csvFilePath);
+// TODO: do this in a less wasteful way?
+const getData = async () => csv(csvOptions).fromFile(csvFilePath);
 
 const app = express();
 
 app.use(express.static('dist'));
-app.get('/api/rentalData', (req, res) => {
-    fileReadPromise.then((data) => {
-        res.send(rentalDataUtils.getBedroomData(data, req.query.bedrooms));
-    });
+app.get('/api/rentalData', async (req, res) => {
+    const data = await getData();
+    res.send(rentalDataUtils.getBedroomData(data, req.query.bedrooms));
 });
 
-app.get('/api/rentalEstimate', (req, res) => {
-    fileReadPromise.then((data) => {
-        const { bedrooms, bathrooms, squareFoot } = req.query;
-        const estimate = rentalDataUtils.estimateRentalValue(data, bedrooms, bathrooms, squareFoot);
-        res.send(estimate);
-    });
+app.get('/api/rentalEstimate', async (req, res) => {
+    const data = await getData();
+    const { bedrooms, bathrooms, squareFoot } = req.query;
+    const estimate = rentalDataUtils.estimateRentalValue(data, bedrooms, bathrooms, squareFoot);
+    res.send(estimate);
 });
 
 app.listen(8080, () => console.log('Listening on port 8080!'));

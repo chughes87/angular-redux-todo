@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Estimate from './Estimate';
+import Chart from './Chart';
 
 export default class RentalForm extends Component {
     constructor(props) {
         super(props);
 
-        //  bedrooms: 1, bathrooms: 1, squareFoot: 500, estimate: 3333, n: 33
-        this.state = { };
+        this.state = {};
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateBedrooms = this.updateBedrooms.bind(this);
@@ -25,6 +25,10 @@ export default class RentalForm extends Component {
                     dataCount: res.n,
                 });
             });
+
+        fetch(`/api/rentalData?bedrooms=${bedrooms}`)
+            .then(res => res.json())
+            .then(data => this.setState({ chartData: data }));
     }
 
     updateBedrooms(event) {
@@ -40,7 +44,7 @@ export default class RentalForm extends Component {
     }
 
     render() {
-        const { bedrooms, bathrooms, squareFoot, medianPrice, dataCount } = this.state;
+        const { bedrooms, bathrooms, squareFoot, medianPrice, dataCount, chartData } = this.state;
         return (
             <div>
                 <div className="form-horizontal">
@@ -76,7 +80,18 @@ export default class RentalForm extends Component {
                         </div>
                     </div>
                 </div>
-                { medianPrice ? <Estimate medianPrice="medianPrice" dataCount="dataCount" /> : <div />}
+                { medianPrice ? (
+                    <div>
+                        <Estimate medianPrice={medianPrice} dataCount={dataCount} />
+                    </div>
+                ) : (
+                    <div />
+                )}
+                { chartData ? (
+                    <Chart data={chartData} />
+                ) : (
+                    <div />
+                )}
             </div>
         );
     }

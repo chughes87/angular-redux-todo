@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Chart from './Chart';
 
-function Estimate({ estimate, dataCount, bedrooms }) {
+function Estimate({ medianPrice, dataCount }) {
     return (
         <div>
             Your estimated rental value is $
-            {estimate}
+            {medianPrice}
             .00 based on&nbsp;
             {dataCount}
             &nbsp;datapoints
-            <Chart bedrooms={bedrooms} />
         </div>
     );
 }
 
 Estimate.propTypes = {
-    estimate: PropTypes.number.isRequired,
+    medianPrice: PropTypes.number.isRequired,
     dataCount: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
 };
+
+export default Estimate;
