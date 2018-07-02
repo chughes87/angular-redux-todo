@@ -10,7 +10,7 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test-init": "./node_modules/jasmine/bin/jasmine.js init",
-    "test": "nodemon --ext js --exec 'jasmine \"src/server/**/*.spec.js\"'",
+    "test": "nodemon --ext js --exec 'jasmine \"src/**/*.spec.js\"'",
     "fetest": "karma start"
   },
   "author": "Sandeep Raveesh",
