@@ -31,7 +31,12 @@ app.get('/api/rentalEstimate', async (req, res) => {
     const data = await getData();
     const { bedrooms, bathrooms, squareFoot } = req.query;
     const estimate = rentalDataUtils.estimateRentalValue(data, +bedrooms, +bathrooms, +squareFoot);
-    res.send(estimate);
+    if (estimate) {
+        res.send(estimate);
+    }
+    else {
+        res.status(500).send('Not enough data');
+    }
 });
 
 app.listen(8080, () => console.log('Listening on port 8080!'));

@@ -25,10 +25,9 @@ function estimateRentalValue(data, bedrooms, bathrooms, squareFoot) {
     if (relevantData) {
         return {
             medianPrice: d3.median(relevantData.map(d => d.price)),
-            n: relevantData.length,
+            dataCount: relevantData.length,
         };
     }
 
-    // TODO: trigger error here
     return null;
 }
