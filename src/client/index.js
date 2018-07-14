@@ -1,15 +1,18 @@
-const angular = require('angular');
+import angular from 'angular';
 
-angular.module('myApp', [])
+angular.module('myApp', [
+    require('./state/actions.js').default.name,
+    require('./state/selectors.js').default.name,
+])
 
     .directive('todo', () => ({
         restrict: 'E',
         scope: {},
         template: `
             <div class="todo-container">
-                <div ng-repeat="todo in todos" class="todo">
+                <div ng-repeat="todo in selectors.getTodos()" class="todo">
                     {{ todo }}
-                    <button class="delete btn btn-light" ng-click="delete(todo)">X</button>
+                    <button class="delete btn btn-light" ng-click="actions.todoRemoved(todo)">X</button>
                 </div>
                 <div class="input-group user-form">
                     <input class="todo-text-input form-control"
@@ -26,10 +29,16 @@ angular.module('myApp', [])
         controller: 'AppController'
     }))
 
-    .controller('AppController', ($scope) => {
+    .controller('AppController', ($scope, actions, selectors) => {
         Object.assign($scope, {
-            todos: ['nope', 'yep', 'why'],
-            addTodo: () => $scope.todos.push($scope.model.text),
-            delete: todo => $scope.todos = $scope.todos.filter(t => t !== todo),
+            actions,
+            selectors,
+            model: { text: '' },
+            addTodo,
         });
+
+        function addTodo() {
+            actions.todoAdded($scope.model.text);
+            $scope.model.text = '';
+        }
     });
