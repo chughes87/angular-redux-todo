@@ -33,8 +33,7 @@ app.get('/api/rentalEstimate', async (req, res) => {
     const estimate = rentalDataUtils.estimateRentalValue(data, +bedrooms, +bathrooms, +squareFoot);
     if (estimate) {
         res.send(estimate);
-    }
-    else {
+    } else {
         res.status(500).send('Not enough data');
     }
 });

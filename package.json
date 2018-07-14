@@ -13,17 +13,12 @@
     "test": "nodemon --ext js --exec 'jasmine \"src/**/*.spec.js\"'",
     "fetest": "karma start"
   },
-  "author": "Sandeep Raveesh",
+  "author": "Charles Hughes",
   "license": "ISC",
   "dependencies": {
+    "angular": "1.5.0",
     "csvtojson": "^2.0.4",
     "express": "^4.16.3",
-    "fs": "0.0.1-security",
-    "prop-types": "^15.6.2",
-    "react-dom": "^16.3.1",
-    "react-redux": "^5.0.7",
-    "d3": "^5.5.0",
-    "react": "^16.4.1",
     "redux": "^4.0.0"
   },
   "devDependencies": {
@@ -31,7 +26,7 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "babel-preset-angular": "^6.0.15",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.11",
@@ -39,8 +34,7 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jasmine": "^2.10.1",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-angular": "^3.3.0",
     "expect": "^23.2.0",
     "html-webpack-plugin": "^3.2.0",
     "jasmine": "^3.1.0",

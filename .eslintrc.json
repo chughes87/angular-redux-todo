@@ -8,12 +8,9 @@
   "rules": {
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off",
     "indent": ["error", 4],
     "no-param-reassign": [0],
     "no-use-before-define": "off",
-    "react/jsx-indent": "off",
-    "react/jsx-indent-props": "off",
     "object-curly-newline": "off"
   },
   "plugins": [
