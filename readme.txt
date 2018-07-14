@@ -1,7 +1,7 @@
 To run:
 
 npm install
-npm run dev
+npm run start
 
 To run tests:
 
